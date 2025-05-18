@@ -1,4 +1,3 @@
-//server/routes/students.js
 const express = require('express');
 const router = express.Router();
 const pool = require('../db/connection'); 
@@ -6,17 +5,14 @@ router.get('/', async (req, res) => {
   const { department, batch, sort = 'desc', search } = req.query;
   let query = 'SELECT name, lc_id, lc FROM students WHERE 1=1';
   const values = [];
-
   if (department) {
     values.push(department);
     query += ` AND department = $${values.length}`;
   }
-
   if (batch) {
     values.push(batch);
     query += ` AND ending_year = $${values.length}`;
   }
-
   if (search) {
     values.push(`%${search.toLowerCase()}%`);
     query += ` AND (LOWER(name) LIKE $${values.length} OR LOWER(lc_id) LIKE $${values.length})`;

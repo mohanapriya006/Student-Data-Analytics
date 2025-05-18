@@ -1,0 +1,84 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #4f46e5;
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.scroll-btn {
+  background-color: #6366f1;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.table-head th {
+  background: #4f46e5;
+  color: #fff;
+  padding: 12px;
+}
+
+.table-row td {
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  text-align: center;
+}
+
+.rank {
+  font-weight: bold;
+  color: #4f46e5;
+}
+
+.graph-section {
+  margin-top: 40px;
+}
+
+.graph-heading {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.summary {
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.common-range {
+  color: #10b981;
+  font-weight: bold;
+}

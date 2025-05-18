@@ -1,51 +1,34 @@
-// Make sure this file exists at backend/controllers/studentController.js
 const pool = require('../db/connection');
-
 const studentController = {
-  // Get students filtered by department and year range, ranked by CGPA
   getStudentsByCGPARanking: async (req, res) => {
     try {
       const { department, startingYear, endingYear, sortOrder = 'DESC' } = req.query;
-      
-      // Build the query with conditional filters
       let query = `
         SELECT name, rno, cgpa
         FROM students
         WHERE 1=1
       `;
-      
       const queryParams = [];
       let paramIndex = 1;
-      
-      // Add department filter if provided
       if (department && department !== 'All') {
         query += ` AND department = $${paramIndex}`;
         queryParams.push(department);
         paramIndex++;
       }
-      
-      // Add starting year filter if provided
       if (startingYear) {
         query += ` AND starting_year = $${paramIndex}`;
         queryParams.push(parseInt(startingYear));
         paramIndex++;
       }
-      
-      // Add ending year filter if provided
       if (endingYear) {
         query += ` AND ending_year = $${paramIndex}`;
         queryParams.push(parseInt(endingYear));
         paramIndex++;
       }
-      
-      // Add sorting by CGPA
       const validSortOrder = ['ASC', 'DESC'].includes(sortOrder.toUpperCase()) 
         ? sortOrder.toUpperCase() 
         : 'DESC';
-      
       query += ` ORDER BY cgpa ${validSortOrder} NULLS LAST`;
-      
-      // Execute the query
       const { rows } = await pool.query(query, queryParams);
       
       // Get statistical data for the graph
@@ -67,10 +50,9 @@ const studentController = {
   }
 };
 
-// Helper function to get statistical data for visualization
 async function getStatisticalData(department, startingYear, endingYear) {
   try {
-    // Build query for statistical data
+
     let query = `
       SELECT 
         CASE 
@@ -88,21 +70,18 @@ async function getStatisticalData(department, startingYear, endingYear) {
     const queryParams = [];
     let paramIndex = 1;
     
-    // Add department filter if provided
     if (department && department !== 'All') {
       query += ` AND department = $${paramIndex}`;
       queryParams.push(department);
       paramIndex++;
     }
     
-    // Add starting year filter if provided
     if (startingYear) {
       query += ` AND starting_year = $${paramIndex}`;
       queryParams.push(parseInt(startingYear));
       paramIndex++;
     }
     
-    // Add ending year filter if provided
     if (endingYear) {
       query += ` AND ending_year = $${paramIndex}`;
       queryParams.push(parseInt(endingYear));

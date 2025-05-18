@@ -32,11 +32,11 @@ function Leetcode() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/students/departments')
+    axios.get('http://localhost:5000/students-lc/departments')
       .then(res => setDepartments(res.data))
       .catch(err => console.error('Error fetching departments:', err));
 
-    axios.get('http://localhost:5000/students/batches')
+    axios.get('http://localhost:5000/students-lc/batches')
       .then(res => setBatches(res.data))
       .catch(err => console.error('Error fetching batches:', err));
   }, []);
@@ -48,7 +48,7 @@ function Leetcode() {
     params.sort = sortOrder;
     if (search) params.search = search;
 
-    axios.get('http://localhost:5000/students', { params })
+    axios.get('http://localhost:5000/students-lc', { params })
       .then(res => {
         setStudents(res.data);
         setLcRangeData(getLcRangeData(res.data));
@@ -131,7 +131,7 @@ function Leetcode() {
     ) : (
       students.map((s, i) => (
         <tr key={i}>
-          <td>{i + 1}</td> {/* Serial Number */}
+          <td>{i + 1}</td> 
           <td>{s.name}</td>
           <td>{s.lc_id}</td>
           <td>{s.lc}</td>
